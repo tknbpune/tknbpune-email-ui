@@ -1,0 +1,224 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TKNB Pune — Mail UI</title>
+
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+<!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+  <!-- Font Awesome for mail icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+  <!-- Animate.css for effects -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mailgo/0.12.2/mailgo.min.js" integrity="sha512-3aszmR3xB4iMmFf4/A8wwyOotCfVSrEllUfRZ7fBpHGib2YAXfM1vaQvYZCz4NPGiwi6iV01qa3JlZK1pf+d0g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mailcheck/1.1.2/mailcheck.min.js" integrity="sha512-xbDYG2aNoxRNdWVXnGkOBrCafX3GZ7+8lSfSOjkpvUmHLwZSFxrcX9aMXsBAbUeus18rxTCiAg5bj5v2EYQUJw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mailgun.js/5.0.3/mailgun.min.js" referrerpolicy="no-referrer"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxchimp/1.3.0/jquery.ajaxchimp.min.js" integrity="sha512-5yj5elY9u6clGe9/97bj3jJlw8+O9XSv/tbme8m/LR8cKnnT5+rR8qHW/UYQ/MozLg3cvTHeYIpM5kRktASSbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-vpaid/2.0.2/videojs_5.vast.vpaid.min.js" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js" integrity="sha512-Yk47FuYNtuINE1w+t/KT4BQ7JaycTCcrvlSvdK/jry6Kcxqg5vN7/svVWCxZykVzzJHaxXk5T9jnFemZHSYgnw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-contact-form/1.4.1/js/contact-form.min.js" integrity="sha512-emLpOPt7xGlnMuwB0gkEUAOT3sPNjON/O01tLohN8sRNPbu7HwtsN1uyzWeMmAefpEB02jgmyo3+3ebVnHIUPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gmail-js/1.1.16/gmail.min.js" integrity="sha512-tptuUAsoELVmdLak7ALpRrZR2xbualfkV3oR0w/KKpMEboXYVlf1M+Ghs6Q7/E6d+uPRJ0KSAfQRedt9Xm6+3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+
+</head>
+<body>
+
+
+<!-- Toggle -->
+<button id="site-toggle" title="Toggle Mail UI">
+  <img src="https://i.ibb.co/Z6JPh4YM/Info-tknbpune-org.png" alt="Toggle" style="width:40px; height:40px; object-fit:contain;" />
+</button>
+
+
+
+
+  <!-- Website wrapper -->
+  <div id="site-wrapper">
+    </header>
+  <header>
+    <div class="logo"><img src="https://i.ibb.co/Z6JPh4YM/Info-tknbpune-org.png"></img></div>
+    <div>
+      <h1>TKNB Pune — Mail UI</h1>
+      <p class="lead">Demo email client with auto-reply</p>
+    </div>
+  </header>
+
+
+
+
+  <main class="container">
+    <!-- Sidebar -->
+    <aside class="card">
+      <nav class="mailboxes">
+        <div class="mb-item active">Inbox</div>
+        <div class="mb-item">Sent</div>
+        <div class="mb-item">Drafts</div>
+      </nav>
+      <div class="btn-row">
+        <button class="btn">Compose</button>
+        <button class="btn ghost" id="auto-reply-toggle">Auto-reply: OFF</button>
+      </div>
+    </aside>
+
+
+    <!-- Messages list -->
+    <section class="card">
+      <h2>Messages</h2>
+      <div class="list" id="msg-list">
+        <div class="msg unread">
+          <span>Welcome to TKNB Mail</span>
+          <span>09:15</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Preview + compose -->
+    <section class="card">
+      <div class="preview">
+        <h3>Preview</h3>
+        <div id="preview-body"></div>
+      </div>
+
+
+      <div class="compose">
+        <h3>Compose</h3>
+        <div class="field">
+          <label>To</label>
+          <input type="email" id="to" placeholder="example@mail.com">
+        </div>
+        <div class="field">
+          <label>Subject</label>
+          <input type="text" id="subject">
+
+
+ <h2>📎 Upload Files or Capture from Webcam</h2>
+
+
+<!-- Upload Form -->
+<form id="uploadForm" method="POST" enctype="multipart/form-data" action="/upload">
+
+
+  <!-- File Upload -->
+  <div class="field">
+    <label for="fileUpload">Attach files</label>
+    <input 
+      type="file" 
+      id="fileUpload" 
+      name="files[]" 
+      multiple 
+      accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.svg,.mp4,.mp3,audio/*,video/*,image/*"
+    >
+    <div class="note">Supported formats: PDF, DOC, DOCX, MP3, MP4, PNG, JPG, SVG, etc.</div>
+  </div>
+
+
+  <!-- Webcam Quality Setting -->
+  <div class="field">
+    <label for="qualitySelect">Webcam Quality</label>
+    <select id="qualitySelect">
+      <option value="auto">Auto</option>
+      <option value="high">High</option>
+      <option value="medium" selected>Medium</option>
+      <option value="low">Data Saver</option>
+    </select>
+  </div>
+
+
+  <!-- Webcam Section -->
+  <div class="field">
+    <label>Capture from Webcam</label>
+    <video id="webcam" autoplay playsinline width="320" height="240"></video>
+    <button type="button" onclick="capturePhoto()">📸 Capture Photo</button>
+    <canvas id="snapshot" width="320" height="240" style="display:none;"></canvas>
+    <img id="capturedImage" src="" alt="Captured Image Preview" style="display:none;">
+  </div>
+
+
+  <!-- Submit Button -->
+  <input type="submit" value="📤 Submit All">
+
+
+</form>
+
+
+        <div class="field">
+          <label>Message</label>
+          <textarea id="body" rows="5"></textarea>
+        </div>
+        <button class="btn" id="send">Send</button>
+      </div>
+    </section>
+  </main>
+  
+  <div id="color-picker" style="margin-bottom: 20px; text-align: center;">
+  <label style="font-weight:bold;">🎨 Choose a Text Color: </label>
+  <button onclick="changeTextColor('#0b74de')" style="background:#0b74de;">Blue</button>
+  <button onclick="changeTextColor('#e91e63')" style="background:#e91e63;">Pink</button>
+  <button onclick="changeTextColor('#4caf50')" style="background:#4caf50;">Green</button>
+  <button onclick="changeTextColor('#ff9800')" style="background:#ff9800;">Orange</button>
+  <button onclick="changeTextColor('#ffffff')" style="background:#ffffff; color:#000;">White</button>
+</div>
+
+
+
+
+  <footer class="wave-container">
+  <h1 class="wave-text">
+    <span>©</span><span>t</span><span>k</span><span>n</span><span>b</span><span>p</span><span>u</span><span>n</span><span>e</span>
+  </h1>
+</footer>
+
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Optional for nicer modal -->
+<script>
+  
+</body>
+</html>
